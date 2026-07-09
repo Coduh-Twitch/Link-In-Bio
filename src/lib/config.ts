@@ -22,7 +22,7 @@ export const AppConfig: AppConfigTypes = {
   redirects: [
     {
       id: "files",
-      url: "https://coduh.ducky.wiki",
+      url: "https://coduh-files.ducky.wiki",
     },
   ],
   socials: [
