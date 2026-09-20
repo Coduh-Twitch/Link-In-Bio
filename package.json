@@ -9,12 +9,16 @@
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"db:push": "drizzle-kit push",
+		"db:migrate": "drizzle-kit migrate",
+		"db:studio": "drizzle-kit studio"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/kit": "^2.63.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"drizzle-kit": "^0.31.10",
 		"mdsvex": "^0.12.7",
 		"svelte": "^5.56.1",
 		"svelte-check": "^4.6.0",
@@ -24,7 +28,11 @@
 	"dependencies": {
 		"@sveltejs/adapter-node": "^5.5.7",
 		"@types/axios": "^0.9.36",
+		"@types/better-sqlite3": "^9.6.0",
+		"@types/node": "^26.6.2",
 		"axios": "^1.18.1",
+		"better-sqlite3": "^13.0.3",
+		"drizzle-orm": "^0.45.2",
 		"duckylib": "^0.1.23"
 	}
 }

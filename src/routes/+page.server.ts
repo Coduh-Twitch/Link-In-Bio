@@ -1,65 +1,110 @@
-import { PRIVATE_TWITCH_TK } from "$env/static/private";
+import { PRIVATE_CLIENT_SECRET } from "$env/static/private";
 import { PUBLIC_CLIENT_ID, PUBLIC_TWITCH_CHANNEL } from "$env/static/public";
+import { clearTokens, getToken, setToken } from "$lib/server/db/util";
 import axios from "axios";
 
 export const load = async () => {
+  let token: string | null = getToken();
+
   try {
-    const streamRes = await axios.get(
-      `https://api.twitch.tv/helix/streams?user_login=${PUBLIC_TWITCH_CHANNEL}`,
+    const validationRes = await axios.get(
+      `https://id.twitch.tv/oauth2/validate`,
       {
         headers: {
           "Client-Id": PUBLIC_CLIENT_ID,
-          Authorization: `Bearer ${PRIVATE_TWITCH_TK}`,
+          Authorization: `Bearer ${token}`,
         },
       },
     );
 
-    console.log("STREAM RES", streamRes.data);
+    if (!validationRes.data || validationRes.status !== 200) {
+      token = null;
+    }
 
-    const stream = streamRes.data?.data?.[0];
+  } catch (e) {
+    token = null;
+  }
 
-    let vod = null;
+  if (!token) {
+    clearTokens();
+    const params = new URLSearchParams();
+    params.append("client_id", PUBLIC_CLIENT_ID);
+    params.append("client_secret", PRIVATE_CLIENT_SECRET);
+    params.append("grant_type", "client_credentials");
 
-    if (!stream) {
-      const userRes = await axios.get(
-        `https://api.twitch.tv/helix/users?login=${PUBLIC_TWITCH_CHANNEL}`,
+    try {
+      const newTokenRes = await axios.post(`https://id.twitch.tv/oauth2/token`, params.toString(), { headers: { "Content-Type": "application/x-www-form-urlencoded" } });
+
+      console.log("NEW TOKEN RES", newTokenRes.data)
+      if (newTokenRes?.data && newTokenRes?.data?.access_token) {
+        token = newTokenRes.data.access_token
+        setToken(token as string);
+
+      } else token = null;
+    } catch (e) {
+      console.log("NEW TOKEN ERROR", e)
+    }
+  }
+
+  if (token) {
+    try {
+      const streamRes = await axios.get(
+        `https://api.twitch.tv/helix/streams?user_login=${PUBLIC_TWITCH_CHANNEL}`,
         {
           headers: {
             "Client-Id": PUBLIC_CLIENT_ID,
-            Authorization: `Bearer ${PRIVATE_TWITCH_TK}`,
+            Authorization: `Bearer ${token}`,
           },
         },
       );
 
-      console.log("user res", userRes.data);
+      // console.log("STREAM RES", streamRes.data);
 
-      if (userRes && userRes.data?.data?.[0]?.id) {
-        let user = userRes.data.data[0];
+      const stream = streamRes.data?.data?.[0];
 
-        const videoRes = await axios.get(
-          `https://api.twitch.tv/helix/videos?user_id=${user.id}`,
+      let vod = null;
+
+      if (!stream) {
+        const userRes = await axios.get(
+          `https://api.twitch.tv/helix/users?login=${PUBLIC_TWITCH_CHANNEL}`,
           {
             headers: {
               "Client-Id": PUBLIC_CLIENT_ID,
-              Authorization: `Bearer ${PRIVATE_TWITCH_TK}`,
+              Authorization: `Bearer ${token}`,
             },
           },
         );
 
-        vod = videoRes.data?.data?.[0] || null;
-        console.log("VOD", vod);
-      }
-    }
+        // console.log("user res", userRes.data);
 
-    return {
-      stream: stream || null,
-      vod: vod || null,
-    };
-  } catch (e) {
-    console.log("STREAM ERROR", e);
-    return {
-      stream: null,
-      vod: null,
-    };
-  }
+        if (userRes && userRes.data?.data?.[0]?.id) {
+          let user = userRes.data.data[0];
+
+          const videoRes = await axios.get(
+            `https://api.twitch.tv/helix/videos?user_id=${user.id}`,
+            {
+              headers: {
+                "Client-Id": PUBLIC_CLIENT_ID,
+                Authorization: `Bearer ${token}`,
+              },
+            },
+          );
+
+          vod = videoRes.data?.data?.[0] || null;
+          // console.log("VOD", vod);
+        }
+      }
+
+      return {
+        stream: stream || null,
+        vod: vod || null,
+      };
+    } catch (e) {
+      // console.log("STREAM ERROR", e);
+      return {
+        stream: null,
+        vod: null,
+      };
+    }
+  } else return { stream: null, vod: null };
 };

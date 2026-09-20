@@ -83,7 +83,7 @@
                         {/if}
                     </Row>
                     {#if social?.description && !isMobile}
-                        <p class="font faded">
+                        <p class="font faded description">
                             {social.description.replace(
                                 "{members}",
                                 members.toLocaleString(),
@@ -164,5 +164,13 @@
         p {
             color: aqua !important;
         }
+    }
+
+    .description {
+        display: -webkit-box;
+        line-clamp: 1;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 </style>

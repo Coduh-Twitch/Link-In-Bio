@@ -57,6 +57,8 @@
 
 <style>
     :global(body) {
+        margin: 0;
+        padding: 0;
         height: 100vh;
         width: 100%;
         font-family: "Do Hyeon", sans-serif;

@@ -14,11 +14,17 @@ export interface Redirect {
 }
 
 interface AppConfigTypes {
+  urls: {
+    source: string;
+  },
   redirects: Redirect[];
   socials: Social[];
 }
 
 export const AppConfig: AppConfigTypes = {
+  urls: {
+    source: "https://github.com/Coduh-Twitch/Link-In-Bio"
+  },
   redirects: [
     {
       id: "files",
@@ -55,21 +61,21 @@ export const AppConfig: AppConfigTypes = {
     },
     {
       id: "discord",
-      handle: "cTVvyh3zke",
-      handlePrefix: ".gg/",
+      handle: "Crib",
+      handlePrefix: "Coduh's ",
       color: "#5865F2",
       icon: "/assets/icons/discord.png",
       url: "https://discord.gg/cTVvyh3zke",
       description: "Join {members} members!",
     },
-    {
-      id: "youtube",
-      handle: "coduh",
-      handlePrefix: "@",
-      color: "#FF0033",
-      icon: "/assets/icons/youtube.png",
-      url: "https://youtube.com/@coduh",
-    },
+    // {
+    //   id: "youtube",
+    //   handle: "coduh",
+    //   handlePrefix: "@",
+    //   color: "#FF0033",
+    //   icon: "/assets/icons/youtube.png",
+    //   url: "https://youtube.com/@coduh",
+    // },
     {
       id: "github",
       handle: "Coduh-Twitch",
@@ -77,7 +83,7 @@ export const AppConfig: AppConfigTypes = {
       color: "#0B0B0B",
       icon: "/assets/icons/github.png",
       url: "https://github.com/coduh-twitch",
-      description: "Code for most Coduh software projects is open source.",
+      description: "You can find the code for most Coduh software projects on GitHub.",
     },
   ],
 };

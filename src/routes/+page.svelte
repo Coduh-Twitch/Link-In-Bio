@@ -172,6 +172,16 @@
         {/if}
     </div>
 </div>
+<div class="footer">
+    <Column paddingBottomPx={10} paddingTopPx={10} backgroundColor="#0d282dd3" heightPx={50} gapEm={0.33} alignItems="center" justifyContent="center">
+        <p class="font">🦆 <a href="https://ducky.wiki" target="_blank">by ducky</a> 🦆</p>
+        <Row heightPx="fit" gapEm={0.5}>
+            <p class="font"><a href={AppConfig.urls.source} target="_blank">Source Code</a></p>
+            <p class="font">⋅</p>
+            <p class="font"><a href={`${AppConfig.urls.source}/issues`} target="_blank">Report Issues</a></p>
+        </Row>
+    </Column>
+</div>
 
 <style>
     @import url("$lib/styles/fonts.css");
