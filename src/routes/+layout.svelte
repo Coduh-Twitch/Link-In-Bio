@@ -59,9 +59,16 @@
     :global(body) {
         margin: 0;
         padding: 0;
+        min-height: 100%;
         height: 100vh;
         width: 100%;
         font-family: "Do Hyeon", sans-serif;
         background: linear-gradient(195deg, #2d778b 12.17%, #153d46 93.37%);
+    }
+
+    @media only screen and (max-width: 1800px) {
+        :global(body) {
+            height: 100%;
+        }
     }
 </style>

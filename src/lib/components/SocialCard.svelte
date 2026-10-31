@@ -42,7 +42,7 @@
             ).json();
 
             if (res && res?.profile) {
-                members = res.profile.member_count;
+                members = res.profile?.member_count || 0;
             }
         }
     });
@@ -82,7 +82,7 @@
                             </div>
                         {/if}
                     </Row>
-                    {#if social?.description && !isMobile}
+                    {#if social?.description}
                         <p class="font faded description">
                             {social.description.replace(
                                 "{members}",
@@ -167,10 +167,13 @@
     }
 
     .description {
+        width: fit-content;
         display: -webkit-box;
-        line-clamp: 1;
-        -webkit-line-clamp: 1;
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        word-break: normal;
+        text-align: left;
     }
 </style>

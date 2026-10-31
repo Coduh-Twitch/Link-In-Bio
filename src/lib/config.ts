@@ -42,6 +42,15 @@ export const AppConfig: AppConfigTypes = {
       description: "Streams every Thursday-Sunday",
     },
     {
+      id: "schedule",
+      handle: "Stream Schedule",
+      handlePrefix: "",
+      color: "#4400A9",
+      icon: "/assets/icons/twitch.png",
+      url: "https://twitch.tv/coduh/schedule",
+      description: "THU/SUN 7:30pst/10:30est | FRI/SAT 8pst/11est",
+    },
+    {
       id: "tiktok",
       handle: "coduh",
       handlePrefix: "@",
@@ -51,7 +60,7 @@ export const AppConfig: AppConfigTypes = {
       description: "Edited gaming content, and streams every Thursday-Sunday",
     },
     {
-      id: "youtube-vods",
+      id: "youtube",
       handle: "CoduhVODS",
       handlePrefix: "@",
       color: "#FF0033",

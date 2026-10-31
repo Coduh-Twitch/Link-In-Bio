@@ -45,9 +45,9 @@
     });
 </script>
 
-<div class="container">
+<div class="container" style:margin-bottom="{isMobile ? 100 : 0}px">
     <div class="heading">
-        <Row heightPx="fit" widthPx="fit">
+        <Row heightPx="fit" widthPx="fit" marginTopPx={20}>
             <img src={coduhLogo} alt="coduh icon" draggable={false} />
             <Row
                 heightPx="fit"
@@ -61,21 +61,27 @@
             </Row>
         </Row>
     </div>
-    <div class="bottom">
+    <div class="bottom" >
         <div
             class="left"
-            style:width={isMobile ? "100%" : "40%"}
+            style:width={isMobile ? "95%" : "40%"}
             style:justify-content={isMobile ? "center" : "flex-start"}
             style:position={isMobile ? "relative" : "absolute"}
             style={isMobile ? "margin-left: auto; margin-right: auto;" : ""}
+
         >
             <Column alignItems={isMobile ? "center" : "flex-start"}>
-                <Row widthPx="fit" alignItems="center">
+                <Row widthPx="fit" alignItems="center" textWrap flexWrap textAlign="center">
                     <h1 class="font hero">FOLLOW CODUH</h1>
-                    <p class="font faded">[or else]</p>
+                    <!-- {#if !mobileQuery.current} -->
+                        <p class="font faded">[or else]</p>
+                    <!-- {/if} -->
                 </Row>
             </Column>
             <Column
+                widthPercent={90}
+                marginRightPx="auto"
+                marginLeftPx={isMobile ? "auto" : 0}
                 alignItems={isMobile ? "center" : "flex-start"}
                 gapEm={0.33}
             >
@@ -94,7 +100,7 @@
             >
                 <Column alignItems={isMobile ? "center" : "flex-end"}>
                     <h1 class="font hero">
-                        {stream ? "CODUH IS LIVE!" : "RECENT VOD"}
+                        {stream ? "CODUH IS LIVE!" : "LATEST VOD"}
                     </h1>
                 </Column>
                 <Column
@@ -243,5 +249,11 @@
 
     svg#icon {
         height: 1em;
+    }
+
+    @media only screen and (max-width: 900px) {
+        .left {
+            left: 0;
+        }
     }
 </style>
