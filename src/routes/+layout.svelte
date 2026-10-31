@@ -66,7 +66,7 @@
         background: linear-gradient(195deg, #2d778b 12.17%, #153d46 93.37%);
     }
 
-    @media only screen and (max-width: 1800px) {
+    @media only screen and (max-width: 900px) {
         :global(body) {
             height: 100%;
         }
