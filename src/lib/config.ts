@@ -51,6 +51,15 @@ export const AppConfig: AppConfigTypes = {
       description: "THU/SUN 7:30pst/10:30est | FRI/SAT 8pst/11est",
     },
     {
+      id: "discord",
+      handle: "Crib",
+      handlePrefix: "Coduh's ",
+      color: "#5865F2",
+      icon: "/assets/icons/discord.png",
+      url: "https://discord.gg/cTVvyh3zke",
+      description: "Join {members} members!",
+    },
+    {
       id: "tiktok",
       handle: "coduh",
       handlePrefix: "@",
@@ -67,15 +76,6 @@ export const AppConfig: AppConfigTypes = {
       icon: "/assets/icons/youtube.png",
       url: "https://youtube.com/@coduhvods",
       description: "VOD Archival Channel",
-    },
-    {
-      id: "discord",
-      handle: "Crib",
-      handlePrefix: "Coduh's ",
-      color: "#5865F2",
-      icon: "/assets/icons/discord.png",
-      url: "https://discord.gg/cTVvyh3zke",
-      description: "Join {members} members!",
     },
     // {
     //   id: "youtube",
