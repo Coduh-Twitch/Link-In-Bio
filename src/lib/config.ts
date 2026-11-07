@@ -65,7 +65,7 @@ export const AppConfig: AppConfigTypes = {
       handlePrefix: "@",
       color: "#FB2B54",
       icon: "/assets/icons/tiktok.png",
-      url: "https://twitch.tv/@coduhz",
+      url: "https://tiktok.com/@coduhz",
       description: "Edited gaming content, and streams every Thursday-Sunday",
     },
     {
