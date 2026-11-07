@@ -48,7 +48,7 @@ export const AppConfig: AppConfigTypes = {
       color: "#4400A9",
       icon: "/assets/icons/twitch.png",
       url: "https://twitch.tv/coduh/schedule",
-      description: "THU/SUN 7:30pst/10:30est | FRI/SAT 8pst/11est",
+      description: "THU-SAT 8pst/11est | SUN 7:30pst/10:30est",
     },
     {
       id: "discord",
@@ -61,11 +61,11 @@ export const AppConfig: AppConfigTypes = {
     },
     {
       id: "tiktok",
-      handle: "coduh",
+      handle: "coduhz",
       handlePrefix: "@",
       color: "#FB2B54",
       icon: "/assets/icons/tiktok.png",
-      url: "https://twitch.tv/coduh",
+      url: "https://twitch.tv/@coduhz",
       description: "Edited gaming content, and streams every Thursday-Sunday",
     },
     {
